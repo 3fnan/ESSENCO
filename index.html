@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title> ESSENCO | Mobile Car Wash & Detailing</title>
+  <title>ESSENCO | Mobile Car Wash & Detailing</title>
   <meta name="description"
-    content="Professional mobile car wash and detailing service. We come to you — at home, office, or anywhere in your area." />
+    content="Professional mobile car wash and detailing service in Payyannur, Payangadi and Pilathra. We come to you — at home or office." />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap"
     rel="stylesheet" />
   <style>
@@ -54,6 +54,11 @@
       background: rgba(10, 10, 10, 0.85);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+      transition: transform 0.35s ease, background 0.3s;
+    }
+
+    nav.nav-hidden {
+      transform: translateY(-110%);
     }
 
     .nav-logo {
@@ -92,7 +97,7 @@
       font-size: 0.85rem;
       letter-spacing: 0.5px;
       text-decoration: none;
-      transition: background 0.2s;
+      transition: all 0.2s;
     }
 
     .nav-cta:hover {
@@ -173,6 +178,21 @@
       overflow: hidden;
     }
 
+    #particles-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    #hero>*:not(#particles-canvas) {
+      position: relative;
+      z-index: 1;
+    }
+
     .hero-badge {
       display: inline-flex;
       align-items: center;
@@ -223,6 +243,12 @@
       flex-wrap: wrap;
     }
 
+    .btn-primary,
+    .btn-outline,
+    .nav-cta {
+      transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
     .btn-primary {
       background: var(--gold);
       color: var(--black);
@@ -232,7 +258,6 @@
       font-size: 0.95rem;
       letter-spacing: 0.5px;
       text-decoration: none;
-      transition: all 0.2s;
       border: 2px solid var(--gold);
     }
 
@@ -250,7 +275,6 @@
       letter-spacing: 0.5px;
       text-decoration: none;
       border: 2px solid rgba(255, 255, 255, 0.25);
-      transition: all 0.2s;
     }
 
     .btn-outline:hover {
@@ -283,6 +307,17 @@
       color: rgba(245, 243, 239, 0.5);
       letter-spacing: 0.5px;
       margin-top: 0.2rem;
+    }
+
+    .hero-enter {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .hero-enter.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* ─── SECTION COMMON ─── */
@@ -319,6 +354,17 @@
       line-height: 1.7;
     }
 
+    .reveal {
+      opacity: 0;
+      transform: translateY(45px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* ─── SERVICES ─── */
     #services {
       background: #0f0f0f;
@@ -346,6 +392,8 @@
       position: relative;
       overflow: hidden;
       transition: background 0.3s;
+      transform-style: preserve-3d;
+      will-change: transform;
     }
 
     .service-card:hover {
@@ -478,12 +526,10 @@
       overflow: hidden;
     }
 
-    .why-visual-inner {
-      font-family: 'Bebas Neue', sans-serif;
-      text-align: center;
-      color: rgba(201, 168, 76, 0.2);
-      font-size: 6rem;
-      line-height: 1;
+    .why-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .why-photo-text {
@@ -517,6 +563,8 @@
       padding: 2.5rem 2rem;
       position: relative;
       transition: border-color 0.3s, transform 0.2s;
+      transform-style: preserve-3d;
+      will-change: transform;
     }
 
     .pricing-card:hover {
@@ -527,6 +575,19 @@
     .pricing-card.featured {
       border-color: var(--gold);
       background: #161610;
+      animation: glow-pulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes glow-pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 12px rgba(201, 168, 76, 0.25), 0 0 24px rgba(201, 168, 76, 0.08);
+      }
+
+      50% {
+        box-shadow: 0 0 24px rgba(201, 168, 76, 0.55), 0 0 48px rgba(201, 168, 76, 0.2);
+      }
     }
 
     .featured-badge {
@@ -628,6 +689,134 @@
     .btn-book-solid:hover {
       background: var(--gold-light);
       border-color: var(--gold-light);
+    }
+
+    /* ─── PACKAGE SECTION LABELS ─── */
+    .pkg-section-label {
+      margin-bottom: 1.8rem;
+    }
+
+    .pkg-section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 1px;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+
+    .pkg-section-label p {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    /* ─── DIVIDER ─── */
+    .pkg-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 3.5rem 0;
+      color: rgba(201, 168, 76, 0.4);
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .pkg-divider::before,
+    .pkg-divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: rgba(201, 168, 76, 0.15);
+    }
+
+    .pkg-divider span {
+      color: var(--gold);
+      white-space: nowrap;
+    }
+
+    /* ─── CAR TYPE BADGE ─── */
+    .car-type-badge {
+      display: inline-block;
+      background: rgba(201, 168, 76, 0.1);
+      border: 1px solid rgba(201, 168, 76, 0.2);
+      color: var(--gold);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      padding: 0.25rem 0.8rem;
+      border-radius: 50px;
+      margin-bottom: 0.8rem;
+      text-transform: uppercase;
+    }
+
+    /* ─── PREMIUM CARD ─── */
+    .premium-card {
+      border-color: var(--gold) !important;
+      background: linear-gradient(135deg, #161610 0%, #12120a 100%) !important;
+      padding: 2.8rem !important;
+    }
+
+    .premium-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+    }
+
+    .premium-price-block {
+      text-align: right;
+    }
+
+    .premium-features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .premium-col-title {
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--gold);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+
+    .premium-cta {
+      display: block;
+      max-width: 340px;
+      margin: 0 auto;
+      font-size: 1rem;
+      padding: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .premium-features-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .premium-header {
+        flex-direction: column;
+      }
+
+      .premium-price-block {
+        text-align: left;
+      }
+
+      .premium-card {
+        padding: 1.8rem !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .premium-features-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* ─── FAQ ─── */
@@ -828,12 +1017,28 @@
       text-align: center;
     }
 
+    .nav-logo,
     .footer-logo {
       font-family: 'Bebas Neue', sans-serif;
+      background: linear-gradient(90deg, var(--gold-dark) 0%, var(--gold-light) 40%, var(--gold) 60%, var(--gold-dark) 100%);
+      background-size: 250% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3.5s linear infinite;
+    }
+
+    @keyframes shimmer {
+      to {
+        background-position: 250% center;
+      }
+    }
+
+    .footer-logo {
       font-size: 2rem;
-      color: var(--gold);
       letter-spacing: 2px;
       margin-bottom: 1rem;
+      display: inline-block;
     }
 
     .footer-links {
@@ -918,6 +1123,20 @@
       transform: scale(1.1);
     }
 
+    /* ─── SCROLL PROGRESS BAR ─── */
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      z-index: 9999;
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light));
+      border-radius: 0 2px 2px 0;
+      box-shadow: 0 0 10px rgba(201, 168, 76, 0.6);
+      transition: width 0.08s linear;
+    }
+
     /* ─── RESPONSIVE ─── */
     @media (max-width: 768px) {
       nav {
@@ -955,118 +1174,6 @@
       .hero-stats {
         gap: 2rem;
       }
-    }
-
-    /* ─── SCROLL PROGRESS BAR ─── */
-    #progress-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 3px;
-      width: 0%;
-      z-index: 9999;
-      background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light));
-      border-radius: 0 2px 2px 0;
-      box-shadow: 0 0 10px rgba(201, 168, 76, 0.6);
-      transition: width 0.08s linear;
-    }
-
-    /* ─── SCROLL REVEAL ─── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(45px);
-      transition: opacity 0.75s ease, transform 0.75s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ─── 3D CARD TILT ─── */
-    .service-card,
-    .pricing-card {
-      transform-style: preserve-3d;
-      will-change: transform;
-    }
-
-    /* ─── GOLD SHIMMER LOGO ─── */
-    .nav-logo,
-    .footer-logo {
-      background: linear-gradient(90deg, var(--gold-dark) 0%, var(--gold-light) 40%, var(--gold) 60%, var(--gold-dark) 100%);
-      background-size: 250% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: shimmer 3.5s linear infinite;
-    }
-
-    @keyframes shimmer {
-      to {
-        background-position: 250% center;
-      }
-    }
-
-    /* ─── GLOW ON FEATURED PRICING CARD ─── */
-    @keyframes glow-pulse {
-
-      0%,
-      100% {
-        box-shadow: 0 0 12px rgba(201, 168, 76, 0.25), 0 0 24px rgba(201, 168, 76, 0.08);
-      }
-
-      50% {
-        box-shadow: 0 0 24px rgba(201, 168, 76, 0.55), 0 0 48px rgba(201, 168, 76, 0.2);
-      }
-    }
-
-    .pricing-card.featured {
-      animation: glow-pulse 2.5s ease-in-out infinite;
-    }
-
-    /* ─── NAV SLIDE ─── */
-    nav {
-      transition: transform 0.35s ease, background 0.3s;
-    }
-
-    nav.nav-hidden {
-      transform: translateY(-110%);
-    }
-
-    /* ─── PARTICLES CANVAS ─── */
-    #particles-canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    #hero>*:not(#particles-canvas) {
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ─── HERO STAGGER ENTRANCE ─── */
-    .hero-enter {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .hero-enter.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ─── MAGNETIC BUTTON ─── */
-    .btn-primary,
-    .btn-outline,
-    .nav-cta,
-    .btn-book {
-      transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s ease, box-shadow 0.15s ease;
     }
   </style>
 </head>
@@ -1201,9 +1308,16 @@
         <div>
           <div class="section-label">Why Choose Us</div>
           <h2 class="section-title">Why Mobile<br>Detailing?</h2>
-          <p class="section-sub">We come to you — at home, office, or anywhere in our service area. No queues, no
-            driving, no waiting.</p>
+          <p class="section-sub">We come to you — at home, office, or anywhere in Payyannur, Payangadi and Pilathra. No
+            queues, no driving, no waiting.</p>
           <div class="why-list">
+            <div class="why-item">
+              <div class="why-icon">🌊</div>
+              <div class="why-text">
+                <h4>We Bring Our Own Water</h4>
+                <p>Our van carries a full water and power supply. You don't need to provide a single thing.</p>
+              </div>
+            </div>
             <div class="why-item">
               <div class="why-icon">⏱️</div>
               <div class="why-text">
@@ -1230,8 +1344,9 @@
         </div>
         <div>
           <div class="why-visual">
-            <img src="image.png" style="width:100%;height:100%;object-fit:cover;border-radius:4px;">
+            <img src="essenco.jpeg" alt="ESSENCO Team">
           </div>
+          <p class="why-photo-text" style="text-align:center;margin-top:1rem;">📸 ESSENCO Professional Detailing</p>
         </div>
       </div>
     </div>
@@ -1240,16 +1355,26 @@
   <!-- ═══ PRICING ═══ -->
   <section id="pricing">
     <div class="container">
+
       <div class="pricing-header">
         <div class="section-label">Transparent Pricing</div>
         <h2 class="section-title">Our Packages</h2>
-        <p class="section-sub" style="margin:0 auto;">No hidden charges. Simple, fair pricing for every budget.</p>
+        <p class="section-sub" style="margin:0 auto;">Professional service. No hidden charges. Price based on your car
+          type.</p>
+      </div>
+
+      <!-- PACKAGE 1: BASIC WASH -->
+      <div class="pkg-section-label">
+        <div class="pkg-section-title">🚿 Package 1 — Basic Wash</div>
+        <p>Exterior wash + full interior vacuum. Price varies by car size.</p>
       </div>
       <div class="pricing-grid">
+
         <div class="pricing-card">
+          <div class="car-type-badge">🚗 Hatchback</div>
           <div class="pricing-name">Basic Wash</div>
-          <div class="pricing-price">₹699 <span>/ visit</span></div>
-          <p class="pricing-desc">The essentials — a thorough exterior wash at your doorstep.</p>
+          <div class="pricing-price">₹499 <span>/ visit</span></div>
+          <p class="pricing-desc">e.g. Alto, Swift, i10, WagonR, Kwid</p>
           <ul class="pricing-features">
             <li>Full exterior hand wash</li>
             <li>Full interior vacuum</li>
@@ -1259,34 +1384,103 @@
           </ul>
           <a href="#contact" class="btn-book btn-book-outline">Book Now</a>
         </div>
+
         <div class="pricing-card featured">
-          <div class="featured-badge">Most Popular</div>
-          <div class="pricing-name">Full Detail</div>
-          <div class="pricing-price">₹999 <span>/ visit</span></div>
-          <p class="pricing-desc">Complete interior + exterior detailing. Our most booked service.</p>
+          <div class="featured-badge">Most Common</div>
+          <div class="car-type-badge">🚙 Sedan</div>
+          <div class="pricing-name">Basic Wash</div>
+          <div class="pricing-price">₹599 <span>/ visit</span></div>
+          <p class="pricing-desc">e.g. Dzire, Amaze, City, Verna, Ciaz</p>
           <ul class="pricing-features">
-            <li>Everything in Basic Wash</li>
+            <li>Full exterior hand wash</li>
             <li>Full interior vacuum</li>
-            <li>Dashboard & console clean</li>
-            <li>Seat & upholstery wipe</li>
-            <li>Tyre dressing & polish</li>
-            <li>Engine Bay cleaning</li>
+            <li>Wheel & tyre clean</li>
+            <li>Window wipe-down</li>
+            <li>Foam rinse & dry</li>
           </ul>
           <a href="#contact" class="btn-book btn-book-solid">Book Now</a>
         </div>
+
         <div class="pricing-card">
-          <div class="pricing-name">Monthly Plan</div>
-          <div class="pricing-price">₹1,799 <span>/ month</span></div>
-          <p class="pricing-desc">2 washes per month at a discounted rate. Subscribe and save.</p>
+          <div class="car-type-badge">🛻 SUV / XUV</div>
+          <div class="pricing-name">Basic Wash</div>
+          <div class="pricing-price">₹699 <span>/ visit</span></div>
+          <p class="pricing-desc">e.g. Creta, Scorpio, Innova, Fortuner, XUV700</p>
           <ul class="pricing-features">
-            <li>2× Full Exterior Wash</li>
-            <li>Priority scheduling</li>
-            <li>Discounted add-ons</li>
-            <li>WhatsApp booking</li>
+            <li>Full exterior hand wash</li>
+            <li>Full interior vacuum</li>
+            <li>Wheel & tyre clean</li>
+            <li>Window wipe-down</li>
+            <li>Foam rinse & dry</li>
           </ul>
-          <a href="#contact" class="btn-book btn-book-outline">Subscribe</a>
+          <a href="#contact" class="btn-book btn-book-outline">Book Now</a>
+        </div>
+
+      </div>
+
+      <!-- DIVIDER -->
+      <div class="pkg-divider"><span>✦ or go premium ✦</span></div>
+
+      <!-- PACKAGE 2: PREMIUM DEEP CLEAN -->
+      <div class="pkg-section-label">
+        <div class="pkg-section-title">✨ Package 2 — Premium Deep Clean</div>
+        <p>Complete interior + exterior detailing including engine bay. Flat price — all car types.</p>
+      </div>
+
+      <div class="premium-card-wrap">
+        <div class="pricing-card premium-card">
+          <div class="featured-badge">Best Value — All Car Types</div>
+
+          <div class="premium-header">
+            <div>
+              <div class="pricing-name" style="font-size:2rem;letter-spacing:1px;">Premium Deep Clean</div>
+              <p style="font-size:0.9rem;color:var(--muted);margin-top:0.4rem;">The full works — inside, outside & under
+                the hood. One flat price regardless of car size.</p>
+            </div>
+            <div class="premium-price-block">
+              <div class="pricing-price" style="font-size:4rem;margin:0;">₹1,299</div>
+              <div style="font-size:0.9rem;color:var(--muted);">per visit • all car types</div>
+            </div>
+          </div>
+
+          <div class="premium-features-grid">
+            <div class="premium-col">
+              <div class="premium-col-title">🚿 Exterior</div>
+              <ul class="pricing-features">
+                <li>Full exterior hand wash</li>
+                <li>Foam rinse & dry</li>
+                <li>Wheel & tyre deep clean</li>
+                <li>Tyre dressing & polish</li>
+                <li>Door jamb cleaning</li>
+                <li>Glass & window clean</li>
+              </ul>
+            </div>
+            <div class="premium-col">
+              <div class="premium-col-title">💺 Interior</div>
+              <ul class="pricing-features">
+                <li>Full deep interior vacuum</li>
+                <li>Dashboard & console clean</li>
+                <li>Seat & upholstery wipe</li>
+                <li>Door panel cleaning</li>
+                <li>Air vent cleaning</li>
+                <li>Odour neutraliser</li>
+              </ul>
+            </div>
+            <div class="premium-col">
+              <div class="premium-col-title">🔧 Engine Bay</div>
+              <ul class="pricing-features">
+                <li>Engine bay degreasing</li>
+                <li>Engine surface wipe-down</li>
+                <li>Safe waterless technique</li>
+                <li>Plastic & rubber dressing</li>
+              </ul>
+            </div>
+          </div>
+
+          <a href="#contact" class="btn-book btn-book-solid premium-cta">Book Premium Deep Clean →</a>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -1306,11 +1500,17 @@
         <div class="faq-list">
           <div class="faq-item">
             <button class="faq-q" onclick="toggleFaq(this)">
+              Do you bring your own water and power? <span class="faq-arrow">+</span>
+            </button>
+            <div class="faq-a">Yes! Our van is fully self-sufficient. We carry our own water tank and power generator.
+              You don't need to provide anything — not even a water tap.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
               Where do you operate? <span class="faq-arrow">+</span>
             </button>
             <div class="faq-a">We currently serve Payyannur, Payangadi and Pilathra. If you're unsure whether we cover
-              your location,
-              send us a WhatsApp message or fill the contact form and we'll confirm within minutes.</div>
+              your location, send us a WhatsApp message or fill the contact form and we'll confirm within minutes.</div>
           </div>
           <div class="faq-item">
             <button class="faq-q" onclick="toggleFaq(this)">
@@ -1330,8 +1530,8 @@
             <button class="faq-q" onclick="toggleFaq(this)">
               How do I book an appointment? <span class="faq-arrow">+</span>
             </button>
-            <div class="faq-a">Fill out the contact form on this page, or message us on WhatsApp. We'll confirm your
-              slot within an hour and send you a reminder the day before.</div>
+            <div class="faq-a">Fill out the contact form on this page, or message us on WhatsApp. We'll confirm your slot
+              within an hour and send you a reminder the day before.</div>
           </div>
           <div class="faq-item">
             <button class="faq-q" onclick="toggleFaq(this)">
@@ -1362,7 +1562,7 @@
               <div class="contact-icon">📞</div>
               <div>
                 <h5>Phone / WhatsApp</h5>
-                <p>+91 93834 66313</p>
+                <p>+91 9383466313</p>
               </div>
             </div>
             <div class="contact-item">
@@ -1430,6 +1630,7 @@
     <ul class="footer-links">
       <li><a href="#services">Services</a></li>
       <li><a href="#pricing">Packages</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -1469,8 +1670,6 @@
       const name = document.getElementById('fname').value.trim();
       const phone = document.getElementById('fphone').value.trim();
       if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
-      // Here you can add a real form submission (e.g. Formspree, EmailJS, etc.)
-      // For now, it shows a success message and opens WhatsApp
       const service = document.getElementById('fservice').value;
       const car = document.getElementById('fcar').value;
       const address = document.getElementById('faddress').value;
@@ -1491,9 +1690,7 @@
         if (link) link.style.color = (y >= top && y < top + h) ? 'var(--gold)' : '';
       });
     });
-  </script>
 
-  <script>
     /* ═══════════════════════════════════════
        ESSENCO — EFFECTS & ANIMATIONS
     ═══════════════════════════════════════ */
