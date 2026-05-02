@@ -515,21 +515,43 @@
     }
 
     .why-visual {
-      aspect-ratio: 4/5;
-      background: linear-gradient(135deg, #1a1a1a 0%, #141414 100%);
-      border-radius: 4px;
+      aspect-ratio: 1/1;
+      background: radial-gradient(circle at center, rgba(201, 168, 76, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid rgba(201, 168, 76, 0.12);
+      border: 1px solid rgba(201, 168, 76, 0.15);
       position: relative;
-      overflow: hidden;
+      box-shadow: 0 0 60px rgba(201, 168, 76, 0.05);
+      animation: float 6s ease-in-out infinite;
+      overflow: visible;
+    }
+
+    .why-visual::before {
+      content: "";
+      position: absolute;
+      top: -10%; left: -10%; right: -10%; bottom: -10%;
+      background: radial-gradient(circle, rgba(201, 168, 76, 0.08) 0%, transparent 70%);
+      z-index: -1;
+      border-radius: 50%;
     }
 
     .why-visual img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      width: 90%;
+      height: 90%;
+      object-fit: contain;
+      filter: drop-shadow(0 0 30px rgba(201, 168, 76, 0.2));
+      transition: transform 0.5s ease;
+    }
+
+    .why-visual:hover img {
+      transform: scale(1.05) rotate(2deg);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(1deg); }
     }
 
     .why-photo-text {
